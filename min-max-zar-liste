@@ -1,0 +1,69 @@
+
+
+
+internal class Personel
+    {
+        public int PersonelID { get; set; }
+        public string Ad { get; set; }    
+        public string Soyad { get; set; }    
+    }
+
+//---------------------------------------------------------------------------
+
+public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        //Soru : Min ve Max sayılarını kullanıcıdan alıp, rastgele min max arasında 15 tam sayi olusturup, bunları listbox'a ekleyen kodu yazınız?
+        private void btnOlustur_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 15; i++)
+            {
+
+                lstSayilar.Items.Add(new Random().Next(int.Parse(txtMin.Text), int.Parse(txtMax.Text)));
+
+            }
+        }
+
+        private void btnZar_Click(object sender, EventArgs e)
+        {
+            //Soru: Zar atıp çıkan sonuca gore zar'ı olusturunuz(zar sayıyıst kadar nokta(RadioButton) olusturunuz??)
+
+            flpZar.Controls.Clear();
+            int zar = new Random().Next(1, 7);
+            btnZar.Text = zar.ToString();
+            for (int i = 0; i < zar; i++)
+            {
+
+                flpZar.Controls.Add(new RadioButton());
+            }
+        }
+
+        ArrayList personeller = new ArrayList();
+        private void btnEkle_Click(object sender, EventArgs e)
+        {
+            //Soru: Gerekli verileri kullanıcıdan alıp, Personel sınıfı uzerinden RAM de tutan kodu yazınız?
+
+            Personel personel = new Personel();
+            personel.PersonelID = int.Parse(txtID.Text);
+            personel.Ad = txtAd.Text;
+            personel.Soyad = txtSoyad.Text;
+
+            //listBox1.Items.Add(personel);
+            personeller.Add(personel);
+            listBox1.DataSource = personeller;
+            dataGridView1.DataSource = personeller;
+
+            //Soru: Kullanıcı tarafından birden fazla girilen urun bilgisin RAM de tutan, ekranda gosteren aynı zamanda ID ye veya Ada gore arama yaparak istenilen Urun bilgisinin olup olmadığını gosteren uygulamayı yazınız?(UrunID , Ad, Fiyat, Kategori) 
+            //ekstra: Kategori bilgileri combobox tan gelmeli...
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
